@@ -1,0 +1,51 @@
+#!/bin/bash
+
+build(){
+    
+    #echo "docker image build -t playground:${1} ${2}" 
+    NAME="playground:"${1}
+
+    echo "docker image build -t ${NAME} ${2}"
+    docker image build -t ${NAME} ${2}
+
+    echo "docker run -it ${NAME} /bin/bash"
+    docker run -it ${NAME} /bin/bash
+    
+}
+
+
+## this funtion will build , create and spool up a docker container
+## args:
+##  1 = container type
+##  2 = container tag
+
+
+spool(){
+    echo "spooling up " $1
+    DIR="./containers/"${1}
+    echo "container dir :" $DIR
+    build $2 $DIR
+}
+
+## ENTRY POINT ##
+
+case "$1" in
+'help')
+    cat ./help.txt
+    ;;
+
+'delete')
+    docker rmi -f playground:${2}
+    ;;
+
+'list')
+    docker images | grep "playground"
+    ;;
+
+'search')
+    $(docker images | grep "playground") | grep ${2}
+    ;;
+*)
+    spool $1 $2
+    ;;
+esac

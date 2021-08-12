@@ -1,0 +1,10 @@
+--------- playground by Benjamin Swaby -------------
+
+./playground [container types] [container tag]
+
+usefull args:
+
+./playground list                       ->   will list all available containers
+./playground delete [container tag]     ->   will remove a playground
+./playground search [grep thing]        ->   will grep the listed containers
+

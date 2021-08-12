@@ -1,0 +1,6 @@
+from python3
+
+EXPOSE 43
+EXPOSE 8080
+
+WORKDIR /
